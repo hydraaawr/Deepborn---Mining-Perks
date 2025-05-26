@@ -1,6 +1,7 @@
 Scriptname deepborn_QuestScript extends Quest
 ; Author: Hydraaawr https://github.com/hydraaawr; https://www.nexusmods.com/users/83984133
 
+;; Better Prices Perk
 GlobalVariable Property JobsOreCorundumValue Auto
 GlobalVariable Property JobsOreEbonyValue Auto
 GlobalVariable Property JobsOreGoldValue Auto
@@ -22,6 +23,15 @@ Float Property BaseOrichalcumValue Auto
 Float Property BaseQuicksilverValue Auto
 Float Property BaseSilverValue Auto
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; IncreaseGemsChance perk
+
+GlobalVariable Property _deepborn_LItemGems10ChanceNone auto
+
+
+Float Property BaseLItemGems10ChanceNone Auto
+
 
 Event OnInit()
     
@@ -34,5 +44,7 @@ Event OnInit()
     BaseOrichalcumValue = JobsOreOrichalcumValue.GetValue()
     BaseQuicksilverValue = JobsOreQuicksilverValue.GetValue()
     BaseSilverValue = JobsOreSilverValue.GetValue()
+
+    BaseLItemGems10ChanceNone = _deepborn_LItemGems10ChanceNone.GetValue()
     
 EndEvent
