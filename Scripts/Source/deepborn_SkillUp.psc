@@ -6,6 +6,7 @@ GlobalVariable Property _deepborn_SkillAdvanceMult auto
 formlist property mineOreToolsList auto
 float property SkillAdvanceMagnitude auto
 Keyword Property _deepborn_Tier1Ore auto
+Keyword Property _deepborn_Tier2Ore auto
 
 Event OnActivate(ObjectReference akActionRef)
     if(akActionRef ==  PlayerRef)
@@ -15,6 +16,10 @@ Event OnActivate(ObjectReference akActionRef)
             if(self.HasKeyword(_deepborn_Tier1Ore))
 
                 SkillAdvanceMagnitude = ((10+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+            
+            elseif(self.HasKeyword(_deepborn_Tier2Ore))
+
+                SkillAdvanceMagnitude = ((20+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
             endif
 
@@ -26,7 +31,7 @@ EndEvent
 
 
 
-Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
+Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked) ; less advancement because hitting is faster
 
 	if akAggressor == PlayerRef	
         Debug.Notification("Damagestage: " + self.GetCurrentDestructionStage())
@@ -34,7 +39,12 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
             ;Evaluate which ore tier is to provide different exp
             if(self.HasKeyword(_deepborn_Tier1Ore))
 
-                SkillAdvanceMagnitude = ((10+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue() ; less advancement because hitting is faster
+                SkillAdvanceMagnitude = ((10+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue() 
+            
+            elseif(self.HasKeyword(_deepborn_Tier2Ore))
+
+                SkillAdvanceMagnitude = ((20+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+
 
             endif
 
