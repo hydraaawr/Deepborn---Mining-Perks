@@ -4,14 +4,19 @@ Scriptname deepborn_SkillUp extends ObjectReference
 Actor Property PlayerRef auto
 GlobalVariable Property _deepborn_SkillAdvanceMult auto
 formlist property mineOreToolsList auto
+Spell Property _deepborn_SkillUpCDSpell auto
+MagicEffect Property _deepborn_SkillUpCDSpellEffect auto
 float property SkillAdvanceMagnitude auto
 Keyword Property _deepborn_Tier1Ore auto
 Keyword Property _deepborn_Tier2Ore auto
 
 Event OnActivate(ObjectReference akActionRef)
-    if(akActionRef ==  PlayerRef)
+    if(akActionRef ==  PlayerRef && !PlayerRef.HasMagicEffect(_deepborn_SkillUpCDSpellEffect))
         Debug.Notification("Activated ore")
-        if PlayerRef.GetItemCount(mineOreToolsList) > 0 && self.GetCurrentDestructionStage() != 1 ; if has tools
+        if PlayerRef.GetItemCount(mineOreToolsList) > 0 && self.GetCurrentDestructionStage() != 1 ; if has tools, not depleted
+            ;; init cd
+            _deepborn_SkillUpCDSpell.Cast(PlayerRef,PlayerRef)
+
             ;Evaluate which ore tier is to provide different exp
             if(self.HasKeyword(_deepborn_Tier1Ore))
 
