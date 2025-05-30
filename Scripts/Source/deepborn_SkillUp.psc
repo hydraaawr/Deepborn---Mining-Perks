@@ -9,6 +9,7 @@ MagicEffect Property _deepborn_SkillUpCDSpellEffect auto
 float property SkillAdvanceMagnitude auto
 Keyword Property _deepborn_Tier1Ore auto
 Keyword Property _deepborn_Tier2Ore auto
+Keyword Property _deepborn_Tier3Ore auto
 
 Event OnActivate(ObjectReference akActionRef)
     if(akActionRef ==  PlayerRef && !PlayerRef.HasMagicEffect(_deepborn_SkillUpCDSpellEffect))
@@ -25,6 +26,10 @@ Event OnActivate(ObjectReference akActionRef)
             elseif(self.HasKeyword(_deepborn_Tier2Ore))
 
                 SkillAdvanceMagnitude = ((20+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+
+            elseif(self.HasKeyword(_deepborn_Tier3Ore))
+
+                SkillAdvanceMagnitude = ((30+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
             endif
 
@@ -49,6 +54,10 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
             elseif(self.HasKeyword(_deepborn_Tier2Ore))
 
                 SkillAdvanceMagnitude = ((20+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+
+            elseif(self.HasKeyword(_deepborn_Tier3Ore))
+
+                SkillAdvanceMagnitude = ((30+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
 
             endif
