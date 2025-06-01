@@ -10,6 +10,10 @@ float property SkillAdvanceMagnitude auto
 Keyword Property _deepborn_Tier1Ore auto
 Keyword Property _deepborn_Tier2Ore auto
 Keyword Property _deepborn_Tier3Ore auto
+Keyword Property _deepborn_Tier4Ore auto
+Keyword Property _deepborn_Tier5Ore auto
+Weapon Property DLC2AncientNordPickaxe auto
+
 
 Event OnActivate(ObjectReference akActionRef)
     if(akActionRef ==  PlayerRef && !PlayerRef.HasMagicEffect(_deepborn_SkillUpCDSpellEffect))
@@ -30,6 +34,14 @@ Event OnActivate(ObjectReference akActionRef)
             elseif(self.HasKeyword(_deepborn_Tier3Ore))
 
                 SkillAdvanceMagnitude = ((30+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+
+            elseif(self.HasKeyword(_deepborn_Tier4Ore))
+
+                SkillAdvanceMagnitude = ((40+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+
+            elseif(self.HasKeyword(_deepborn_Tier5Ore) && PlayerRef.GetItemCount(DLC2AncientNordPickaxe) > 0) ; special condition for stalhrim
+
+                SkillAdvanceMagnitude = ((50+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
             endif
 
@@ -59,7 +71,13 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 
                 SkillAdvanceMagnitude = ((30+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
+            elseif(self.HasKeyword(_deepborn_Tier4Ore))
 
+                SkillAdvanceMagnitude = ((40+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+
+            elseif(self.HasKeyword(_deepborn_Tier5Ore) && PlayerRef.IsEquipped(DLC2AncientNordPickaxe)) ; special condition for stalhrim
+
+                SkillAdvanceMagnitude = ((50+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
             endif
 
             Utility.Wait(1)
