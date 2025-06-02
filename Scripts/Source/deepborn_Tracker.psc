@@ -14,7 +14,7 @@ Event OnLocationChange(Location akOldLoc, Location akNewLoc)
             Debug.Notification("Entered a mine")
             PlayerRef.addSpell(_deepborn_MineFortifyMovSpeedAb01)
 
-        elseif !akNewLoc.HasKeyword(LocTypeMine)
+        elseif !akNewLoc.HasKeyword(LocTypeMine) && PlayerRef.HasSpell(_deepborn_MineFortifyMovSpeedAb01)
 
             PlayerRef.DispelSpell(_deepborn_MineFortifyMovSpeedAb01)
             
