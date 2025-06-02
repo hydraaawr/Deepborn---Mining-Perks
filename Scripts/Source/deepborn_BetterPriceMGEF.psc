@@ -37,13 +37,14 @@ Event OnEffectStart(Actor akTarget, Actor akCaster)
         Float multiplier = 1.0
 
         ; Determine the proper multiplier based on perks
-        if PlayerRef.HasPerk(_deepborn_BetterPrice_Perk01) && !PlayerRef.HasPerk(_deepborn_BetterPrice_Perk02) && !PlayerRef.HasPerk(_deepborn_BetterPrice_Perk03)
-            multiplier = 1.10 ; Rank 1: +10%
-        elseif PlayerRef.HasPerk(_deepborn_BetterPrice_Perk02) && !PlayerRef.HasPerk(_deepborn_BetterPrice_Perk03)
-            multiplier = 1.15 ; Rank 2: +15%
-        elseif PlayerRef.HasPerk(_deepborn_BetterPrice_Perk03)
+        if PlayerRef.HasPerk(_deepborn_BetterPrice_Perk03)
             multiplier = 1.20 ; Rank 3: +20%
+        elseif PlayerRef.HasPerk(_deepborn_BetterPrice_Perk02) 
+            multiplier = 1.15 ; Rank 2: +15%
+        elseif PlayerRef.HasPerk(_deepborn_BetterPrice_Perk01)
+            multiplier = 1.10 ; Rank 1: +10%
         endif
+
 
         AdjustOreValues(multiplier)
 
