@@ -8,6 +8,18 @@ Spell Property _deepborn_MineFortifyMovSpeedAb01 auto
 Perk Property _deepborn_MineFortifyCarryWeight_Perk01 auto
 Spell Property _deepborn_MineFortifyCarryWeightAb01 auto
 MagicEffect Property _deepborn_MineFortifyCarryWeightAbEffect01 auto
+deepborn_QuestScript Property QuestScript auto
+
+
+Event OnPlayerLoad()
+
+    QuestScript.SetBaseValues() ; in case user touched with xedit the base values, it updates
+
+EndEvent
+
+
+
+
 
 
 Event OnLocationChange(Location akOldLoc, Location akNewLoc)

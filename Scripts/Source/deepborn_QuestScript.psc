@@ -36,8 +36,8 @@ Float Property BaseLItemGems10ChanceNone Auto
 Actor Property PlayerRef Auto
 Perk Property _deepborn_OpenTree_Perk01 Auto
 
-Event OnInit()
-    ;; Save Base values
+Function SetBaseValues()
+
     BaseCorundumValue = JobsOreCorundumValue.GetValue()
     BaseEbonyValue = JobsOreEbonyValue.GetValue()
     BaseGoldValue = JobsOreGoldValue.GetValue()
@@ -50,7 +50,16 @@ Event OnInit()
 
     BaseLItemGems10ChanceNone = _deepborn_LItemGems10ChanceNone.GetValue()
 
+EndFunction
+
+
+Event OnInit()
+    
+    SetBaseValues()
+
     ;; Add perk
     PlayerRef.Addperk(_deepborn_OpenTree_Perk01)
+
+    self.Stop()
     
 EndEvent
