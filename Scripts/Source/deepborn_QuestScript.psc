@@ -32,9 +32,12 @@ GlobalVariable Property _deepborn_LItemGems10ChanceNone auto
 
 Float Property BaseLItemGems10ChanceNone Auto
 
+;; DAK perk
+Actor Property PlayerRef Auto
+Perk Property _deepborn_OpenTree_Perk01 Auto
 
 Event OnInit()
-    
+    ;; Save Base values
     BaseCorundumValue = JobsOreCorundumValue.GetValue()
     BaseEbonyValue = JobsOreEbonyValue.GetValue()
     BaseGoldValue = JobsOreGoldValue.GetValue()
@@ -46,5 +49,8 @@ Event OnInit()
     BaseSilverValue = JobsOreSilverValue.GetValue()
 
     BaseLItemGems10ChanceNone = _deepborn_LItemGems10ChanceNone.GetValue()
+
+    ;; Add perk
+    PlayerRef.Addperk(_deepborn_OpenTree_Perk01)
     
 EndEvent
