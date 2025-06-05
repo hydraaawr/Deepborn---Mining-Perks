@@ -24,24 +24,24 @@ Event OnActivate(ObjectReference akActionRef)
 
             ;Evaluate which ore tier is to provide different exp
             if(self.HasKeyword(_deepborn_Tier1Ore))
-
+                Debug.Notification("Tier 1 Ore")
                 SkillAdvanceMagnitude = ((10+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
             
             elseif(self.HasKeyword(_deepborn_Tier2Ore))
-
-                SkillAdvanceMagnitude = ((20+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+                Debug.Notification("Tier 2 Ore")
+                SkillAdvanceMagnitude = ((20+(11 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
             elseif(self.HasKeyword(_deepborn_Tier3Ore))
-
-                SkillAdvanceMagnitude = ((30+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+                Debug.Notification("Tier 3 Ore")
+                SkillAdvanceMagnitude = ((30+(12 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
             elseif(self.HasKeyword(_deepborn_Tier4Ore))
-
-                SkillAdvanceMagnitude = ((40+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+                Debug.Notification("Tier 4 Ore")
+                SkillAdvanceMagnitude = ((40+(13 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
             elseif(self.HasKeyword(_deepborn_Tier5Ore) && PlayerRef.GetItemCount(DLC2AncientNordPickaxe) > 0) ; special condition for stalhrim
-
-                SkillAdvanceMagnitude = ((50+(10 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
+                Debug.Notification("Tier 5 Ore")
+                SkillAdvanceMagnitude = ((50+(14 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
             endif
 
