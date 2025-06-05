@@ -26,7 +26,7 @@ Event OnLocationChange(Location akOldLoc, Location akNewLoc)
     if PlayerRef.HasPerk(_deepborn_MineFortifyMovSpeed_Perk01)
         if akNewLoc.HasKeyword(LocTypeMine)
 
-            Debug.Notification("You feel faster")
+            ;Debug.Notification("You feel faster")
             PlayerRef.addSpell(_deepborn_MineFortifyMovSpeedAb01, false)
 
         elseif !akNewLoc.HasKeyword(LocTypeMine) && PlayerRef.HasSpell(_deepborn_MineFortifyMovSpeedAb01)
@@ -39,7 +39,7 @@ Event OnLocationChange(Location akOldLoc, Location akNewLoc)
 
     if PlayerRef.HasPerk(_deepborn_MineFortifyCarryWeight_Perk01) && !PlayerRef.HasMagicEffect(_deepborn_MineFortifyCarryWeightAbEffect01) ; Has perk and its not under effects of mgef
         if  akOldLoc.HasKeyword(LocTypeMine) && !akNewLoc.HasKeyword(LocTypeMine) ;;  leaving a mine
-            Debug.Notification("You feel weightless")
+            ;Debug.Notification("You feel weightless")
             _deepborn_MineFortifyCarryWeightAb01.Cast(PlayerRef,PlayerRef)
         endif
     endif
