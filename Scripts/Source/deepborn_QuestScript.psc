@@ -55,11 +55,12 @@ EndFunction
 
 Event OnInit()
     
+    Debug.Notification("Deepborn Initialized")
+    
     SetBaseValues()
 
     ;; Add perk
     PlayerRef.Addperk(_deepborn_OpenTree_Perk01)
 
-    self.Stop()
     
 EndEvent
