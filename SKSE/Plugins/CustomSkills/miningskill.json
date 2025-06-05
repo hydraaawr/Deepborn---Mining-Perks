@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/Exit-9B/CustomSkills/main/docs/schema/CustomSkill.json",
   "version": 1,
   "skydome": {
-    "model": "LLFP/Interface/intllfpskydome.nif",
+    "model": "deepborn/Interface/intdeepbornskydome.nif",
     "cameraRightPoint": 2
   },
   "showMenu": "deepborn.esp|D62",
@@ -12,7 +12,7 @@
     {
       "id": "mining",
       "name": "Mining",
-      "description": "Mining description",
+      "description": "The steady rhythm of striking ore veins and the power of fire combine in the miner’s craft. With practiced hands, rarer minerals and precious gems are uncovered from the depths.",
       "level": "deepborn.esp|D63",
       "ratio": "deepborn.esp|D65",
       "legendary": "deepborn.esp|002",
@@ -26,6 +26,40 @@
         "enableXPPerRank": true
       },
       "nodes": [
+	  {
+          "id": "BetterPrice",
+          "perk": "deepborn.esp|00B",
+          "x": -0.3,
+          "y": -0.1,
+          "links": [ "MineFortifyCarryWeight","MineFortifyMovSpeed" ]
+        },
+		{
+          "id": "MineFortifyCarryWeight",
+          "perk": "deepborn.esp|02C",
+          "x": 0.9,
+          "y": 0.5,
+          "links": [ "IncreaseGemsChance" ]
+        },
+        {
+          "id": "MineFortifyMovSpeed",
+          "perk": "deepborn.esp|015",
+          "x": -1.4,
+          "y": 0.5,
+          "links": [ "IncreaseGemsChance" ]
+        },
+        {
+          "id": "IncreaseGemsChance",
+          "perk": "deepborn.esp|01E",
+          "x": -0.3,
+          "y": 1.2,
+		  "links": [ "MoreIngotSmelt" ]
+        },
+		{
+          "id": "MoreIngotSmelt",
+          "perk": "deepborn.esp|021",
+          "x": -0.3,
+          "y": 3.5
+        }
  
   ]
 }
