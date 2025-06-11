@@ -35,7 +35,7 @@ Function Fragment_2()
 SetObjectiveCompleted(200, true)
 
 game.GetPlayer().RemoveItem(DLC2HeartStone, 1)
-game.GetPlayer().AddItem(Gold, 250)
+game.GetPlayer().AddItem(Gold, _deepborn_JobsHeartStoneValue.GetValue() as int)
 
 AchievementsQuest.IncSideQuests()
 stop()
@@ -79,3 +79,7 @@ MiscObject Property Gold  Auto
 MiscObject Property DLC2HeartStone  Auto  
 
 AchievementsScript Property AchievementsQuest Auto
+
+;; Deepborn
+
+GlobalVariable Property _deepborn_JobsHeartStoneValue auto

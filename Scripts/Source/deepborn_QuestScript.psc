@@ -11,6 +11,7 @@ GlobalVariable Property JobsOreMoonstoneValue Auto
 GlobalVariable Property JobsOreOrichalcumValue Auto
 GlobalVariable Property JobsOreQuicksilverValue Auto
 GlobalVariable Property JobsOreSilverValue Auto
+GlobalVariable Property _deepborn_JobsHeartStoneValue auto
 
 ; Properties to hold ore base values for better prices perk
 Float Property BaseCorundumValue Auto
@@ -22,7 +23,7 @@ Float Property BaseMoonstoneValue Auto
 Float Property BaseOrichalcumValue Auto
 Float Property BaseQuicksilverValue Auto
 Float Property BaseSilverValue Auto
-
+Float Property BaseHeartStoneValue Auto
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; IncreaseGemsChance perk
@@ -47,6 +48,7 @@ Function SetBaseValues()
     BaseOrichalcumValue = JobsOreOrichalcumValue.GetValue()
     BaseQuicksilverValue = JobsOreQuicksilverValue.GetValue()
     BaseSilverValue = JobsOreSilverValue.GetValue()
+    BaseHeartStoneValue = _deepborn_JobsHeartStoneValue.GetValue()
 
     BaseLItemGems10ChanceNone = _deepborn_LItemGems10ChanceNone.GetValue()
 
