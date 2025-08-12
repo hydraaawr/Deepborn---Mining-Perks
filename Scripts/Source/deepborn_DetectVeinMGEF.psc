@@ -6,6 +6,8 @@ Formlist Property _deepborn_MiningFurnitureMarkerList auto
 Actor Property PlayerRef auto
 Sound Property _deepborn_DetectVeinSound auto
 Form Property _deepborn_FXSmokeSmokeLg1x1_color auto
+objectReference Smoke1
+objectReference Smoke2
 
 Event OnEffectStart(Actor akTarget, Actor akCaster)
     if(akCaster == PlayerRef)
@@ -14,12 +16,24 @@ Event OnEffectStart(Actor akTarget, Actor akCaster)
 
         MineOreFurnitureScript miningScript = ClosestMiningFurn as MineOreFurnitureScript ; dynamic assign, in order to pass evaluate its properties
         ;Debug.Notification()
-        if(ClosestMiningFurn && miningScript.canBeActivated == TRUE)
+        if(ClosestMiningFurn)
             
             Debug.Notification("FOUND available mining furniture at " + ClosestMiningFurn.GetDistance(PlayerRef))
 
             _deepborn_DetectVeinSound.Play(ClosestMiningFurn)
-            ClosestMiningFurn.PlaceAtMe(_deepborn_FXSmokeSmokeLg1x1_color)
+            ;; place 2 smokes for visibility
+            Smoke1 = ClosestMiningFurn.PlaceAtMe(_deepborn_FXSmokeSmokeLg1x1_color)
+            Smoke2 = ClosestMiningFurn.PlaceAtMe(_deepborn_FXSmokeSmokeLg1x1_color)
+
+            Utility.Wait(5) ; how long they last
+
+            Smoke1.Disable(True)
+            Smoke2.Disable(True)
+
+            Smoke1.Delete()
+            Smoke2.Delete()
+
+
 
         Else
 
