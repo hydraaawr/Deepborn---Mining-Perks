@@ -4,19 +4,26 @@ Scriptname deepborn_DetectVeinMGEF extends activemagiceffect
 Perk Property _deepborn_DetectVein_Perk01 auto
 Formlist Property _deepborn_MiningFurnitureMarkerList auto
 Actor Property PlayerRef auto
+Sound Property _deepborn_DetectVeinSound auto
+Form Property FXSmokeSmokeLg1x1 auto
 
 Event OnEffectStart(Actor akTarget, Actor akCaster)
     if(akCaster == PlayerRef)
 
-        Form ClosestMiningFurn = Game.FindClosestReferenceOfAnyTypeInListFromRef(_deepborn_MiningFurnitureMarkerList,PlayerRef, 10000) ; uses mining furnitures for being a much lower count than activators
-        
-        if(ClosestMiningFurn)
+        ObjectReference ClosestMiningFurn = Game.FindClosestReferenceOfAnyTypeInListFromRef(_deepborn_MiningFurnitureMarkerList,PlayerRef, 10000) ; uses mining furnitures for being a much lower count than activators
+
+        MineOreFurnitureScript miningScript = ClosestMiningFurn as MineOreFurnitureScript ; dynamic assign, in order to pass evaluate its properties
+        ;Debug.Notification()
+        if(ClosestMiningFurn && miningScript.canBeActivated == TRUE)
             
-            Debug.Notification("FOUND mining furniture")
+            Debug.Notification("FOUND available mining furniture at " + ClosestMiningFurn.GetDistance(PlayerRef))
+
+            _deepborn_DetectVeinSound.Play(ClosestMiningFurn)
+            ClosestMiningFurn.PlaceAtMe(FXSmokeSmokeLg1x1)
 
         Else
 
-            Debug.Notification("No mining furniture found")
+            Debug.Notification("No available mining furniture found")
             
         endif
     endif
