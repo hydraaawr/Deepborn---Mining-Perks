@@ -5,7 +5,7 @@ Perk Property _deepborn_DetectVein_Perk01 auto
 Formlist Property _deepborn_MiningFurnitureMarkerList auto
 Actor Property PlayerRef auto
 Sound Property _deepborn_DetectVeinSound auto
-Form Property FXSmokeSmokeLg1x1 auto
+Form Property _deepborn_FXSmokeSmokeLg1x1_color auto
 
 Event OnEffectStart(Actor akTarget, Actor akCaster)
     if(akCaster == PlayerRef)
@@ -19,7 +19,7 @@ Event OnEffectStart(Actor akTarget, Actor akCaster)
             Debug.Notification("FOUND available mining furniture at " + ClosestMiningFurn.GetDistance(PlayerRef))
 
             _deepborn_DetectVeinSound.Play(ClosestMiningFurn)
-            ClosestMiningFurn.PlaceAtMe(FXSmokeSmokeLg1x1)
+            ClosestMiningFurn.PlaceAtMe(_deepborn_FXSmokeSmokeLg1x1_color)
 
         Else
 
