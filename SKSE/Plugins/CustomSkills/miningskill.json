@@ -27,10 +27,17 @@
       },
       "nodes": [
 	  {
+          "id": "DetectVein",
+          "perk": "deepborn.esp|039",
+          "x": -0.3,
+          "y": -0.1,
+          "links": [ "BetterPrice"]
+      },	  
+	  {
           "id": "BetterPrice",
           "perk": "deepborn.esp|00B",
           "x": -0.3,
-          "y": -0.1,
+          "y": 0.2,
           "links": [ "MineFortifyCarryWeight","MineFortifyMovSpeed" ]
         },
 		{
