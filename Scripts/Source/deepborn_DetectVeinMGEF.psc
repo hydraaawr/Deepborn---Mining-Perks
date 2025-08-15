@@ -11,7 +11,7 @@ objectReference Smoke2
 Event OnEffectStart(Actor akTarget, Actor akCaster)
     if(akCaster == PlayerRef)
 
-        ObjectReference ClosestMiningFurn = Game.FindClosestReferenceOfAnyTypeInListFromRef(_deepborn_MiningFurnitureMarkerList,PlayerRef, 3000) ; uses mining furnitures for being a much lower count than activators
+        ObjectReference ClosestMiningFurn = Game.FindClosestReferenceOfAnyTypeInListFromRef(_deepborn_MiningFurnitureMarkerList,PlayerRef, 5000) ; uses mining furnitures for being a much lower count than activators
 
         MineOreFurnitureScript miningScript = ClosestMiningFurn as MineOreFurnitureScript ; dynamic assign, in order to pass evaluate its properties
         ;Debug.Notification()
