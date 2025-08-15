@@ -31,14 +31,14 @@
           "perk": "deepborn.esp|039",
           "x": -0.3,
           "y": -0.1,
-          "links": [ "BetterPrice"]
+          "links": [ "BetterPrice","MineFortifyCarryWeight","MineFortifyMovSpeed"]
       },	  
 	  {
           "id": "BetterPrice",
           "perk": "deepborn.esp|00B",
           "x": -0.3,
-          "y": 0.2,
-          "links": [ "MineFortifyCarryWeight","MineFortifyMovSpeed" ]
+          "y": 0.2
+			
         },
 		{
           "id": "MineFortifyCarryWeight",
