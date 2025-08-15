@@ -30,7 +30,7 @@
           "id": "DetectVein",
           "perk": "deepborn.esp|039",
           "x": -0.3,
-          "y": -0.1,
+          "y": -0.37,
           "links": [ "BetterPrice","MineFortifyCarryWeight","MineFortifyMovSpeed"]
       },	  
 	  {
