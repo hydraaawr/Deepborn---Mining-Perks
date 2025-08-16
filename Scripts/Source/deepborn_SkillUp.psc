@@ -19,9 +19,9 @@ Weapon Property DLC2dunKolbjornRalisPickaxe auto
 
 
 Event OnActivate(ObjectReference akActionRef)
-    if(akActionRef ==  PlayerRef && !PlayerRef.HasMagicEffect(_deepborn_SkillUpCDSpellEffect))
+    if(akActionRef ==  PlayerRef)
         ;Debug.Notification("Activated ore")
-        if PlayerRef.GetItemCount(mineOreToolsList) > 0 && self.GetCurrentDestructionStage() != 1 ; if has tools, not depleted
+        if PlayerRef.GetItemCount(mineOreToolsList) > 0 && self.GetCurrentDestructionStage() != 1 && !PlayerRef.HasMagicEffect(_deepborn_SkillUpCDSpellEffect) ; if has tools, not depleted. For some reason it includes DLC2StalhrimMineOreToolsList too
             ;; init cd
             _deepborn_SkillUpCDSpell.Cast(PlayerRef,PlayerRef)
 
@@ -46,7 +46,7 @@ Event OnActivate(ObjectReference akActionRef)
                 ;Debug.Notification("Tier 5 Ore")
                 SkillAdvanceMagnitude = ((50+(14 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
-            elseif(self.HasKeyword(_deepborn_Tier6Ore) && ((PlayerRef.GetItemCount(DLC2AncientNordPickaxe) > 0) ||  PlayerRef.GetItemCount(DLC2RR03NordPickaxe) > 0 ||  PlayerRef.GetItemCount(DLC2dunKolbjornRalisPickaxe) > 0)) ; special condition for stalhrim
+            elseif(self.HasKeyword(_deepborn_Tier6Ore) && ((PlayerRef.GetItemCount(DLC2AncientNordPickaxe) > 0) ||  PlayerRef.GetItemCount(DLC2RR03NordPickaxe) > 0 ||  PlayerRef.GetItemCount(DLC2dunKolbjornRalisPickaxe) > 0)) ; special condition for stalhrim. In future updates, maybe replace by DLC2StalhrimMineOreToolsList
                 ;Debug.Notification("Tier 6 Ore")
                 SkillAdvanceMagnitude = ((60+(15 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
@@ -54,7 +54,13 @@ Event OnActivate(ObjectReference akActionRef)
 
             Utility.Wait(1)
             CustomSkills.AdvanceSkill("mining", SkillAdvanceMagnitude)
-            endif
+
+        elseif(PlayerRef.HasMagicEffect(_deepborn_SkillUpCDSpellEffect))
+
+            Debug.Notification("You are mining too fast. No experience obtained.")
+
+        endif
+    
     endif
 EndEvent
 
