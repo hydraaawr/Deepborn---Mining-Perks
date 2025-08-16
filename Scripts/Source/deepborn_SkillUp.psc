@@ -57,7 +57,7 @@ Event OnActivate(ObjectReference akActionRef)
 
         elseif(PlayerRef.HasMagicEffect(_deepborn_SkillUpCDSpellEffect))
 
-            Debug.Notification("You are mining too fast. No experience obtained.")
+            Debug.Notification("You are mining too quickly. No experience gained.")
 
         endif
     
