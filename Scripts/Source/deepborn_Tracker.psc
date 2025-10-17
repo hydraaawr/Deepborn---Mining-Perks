@@ -11,9 +11,9 @@ MagicEffect Property _deepborn_MineFortifyCarryWeightAbEffect01 auto
 deepborn_QuestScript Property QuestScript auto
 
 
-Event OnPlayerLoad()
-
-    QuestScript.SetBaseValues() ; in case user touched with xedit the base values, it updates
+Event OnPlayerLoadGame()
+    
+    QuestScript.UpdateManager() ; in case user updated the mod, it applies necessary changes
 
 EndEvent
 

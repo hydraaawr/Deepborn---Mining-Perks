@@ -37,7 +37,15 @@ Float Property BaseLItemGems10ChanceNone Auto
 Actor Property PlayerRef Auto
 Perk Property _deepborn_OpenTree_Perk01 Auto
 
-Function SetBaseValues()
+;; Updating system var
+float Property _deepborn_Version Auto
+Spell Property _deepborn_IncreaseGemsChanceAb01 Auto
+Spell Property _deepborn_IncreaseGemsChanceAb02 Auto
+Spell Property _deepborn_IncreaseGemsChanceAb03 Auto
+
+
+
+Function SetBaseValues() ; Technical debt: i'll have to make an update system for ore values too if I ever change them in future updates: 
 
     BaseCorundumValue = JobsOreCorundumValue.GetValue()
     BaseEbonyValue = JobsOreEbonyValue.GetValue()
@@ -55,11 +63,38 @@ Function SetBaseValues()
 EndFunction
 
 
+;; 3.2.0 - Reapply increasegemchance changes when updating mod
+Function UpdateManager()
+    Debug.Notification("Deepborn Version: " + _deepborn_Version)
+    If (_deepborn_Version < 3.20)
+        Debug.Notification("Deepborn Update: Reapplying Increase Gems MGEFs")
+
+        _deepborn_LItemGems10ChanceNone.SetValue(BaseLItemGems10ChanceNone) ; take the previous version base value
+
+        ;; Dispel and readd in order to EffectStart() to trigger
+        If(PlayerRef.HasSpell(_deepborn_IncreaseGemsChanceAb03))
+            PlayerRef.DispelSpell(_deepborn_IncreaseGemsChanceAb03)
+            PlayerRef.AddSpell(_deepborn_IncreaseGemsChanceAb03, false)
+        elseif(PlayerRef.HasSpell(_deepborn_IncreaseGemsChanceAb02))
+            PlayerRef.DispelSpell(_deepborn_IncreaseGemsChanceAb02)
+            PlayerRef.AddSpell(_deepborn_IncreaseGemsChanceAb02, false)
+        elseif(PlayerRef.HasSpell(_deepborn_IncreaseGemsChanceAb01))
+            PlayerRef.DispelSpell(_deepborn_IncreaseGemsChanceAb01)
+            PlayerRef.AddSpell(_deepborn_IncreaseGemsChanceAb01, false)
+        endif
+        _deepborn_Version = 3.20
+    endif
+
+
+endFunction
+
+
 Event OnInit()
     
     Debug.Notification("Deepborn Initialized")
-    
     SetBaseValues()
+    UpdateManager() ; to set the version
+    
 
     ;; Add perk
     PlayerRef.Addperk(_deepborn_OpenTree_Perk01)
