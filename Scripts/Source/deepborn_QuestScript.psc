@@ -65,9 +65,9 @@ EndFunction
 
 ;; 3.2.0 - Reapply increasegemchance changes when updating mod
 Function UpdateManager()
-    Debug.Notification("Deepborn Version: " + _deepborn_Version)
+    ;Debug.Notification("Deepborn Version: " + _deepborn_Version) ;DEBUG
     If (_deepborn_Version < 3.20)
-        Debug.Notification("Deepborn Update: Reapplying Increase Gems MGEFs")
+        ;Debug.Notification("Deepborn Update: Reapplying Increase Gems MGEFs") ;DEBUG
 
         _deepborn_LItemGems10ChanceNone.SetValue(BaseLItemGems10ChanceNone) ; take the previous version base value
 
