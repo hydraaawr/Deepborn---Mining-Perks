@@ -16,6 +16,9 @@ Keyword Property _deepborn_Tier6Ore auto
 Weapon Property DLC2AncientNordPickaxe auto
 Weapon Property DLC2RR03NordPickaxe auto
 Weapon Property DLC2dunKolbjornRalisPickaxe auto
+;; deepborn 4.0.0: added Nirn Shard as the way of opening skill tree
+MiscObject Property _deepborn_NirnShard auto
+Bool property FirstTimeMining = true auto
 
 
 Event OnActivate(ObjectReference akActionRef)
@@ -24,6 +27,16 @@ Event OnActivate(ObjectReference akActionRef)
         if PlayerRef.GetItemCount(mineOreToolsList) > 0 && self.GetCurrentDestructionStage() != 1 && !PlayerRef.HasMagicEffect(_deepborn_SkillUpCDSpellEffect) ; if has tools, not depleted. For some reason it includes DLC2StalhrimMineOreToolsList too
             ;; init cd
             _deepborn_SkillUpCDSpell.Cast(PlayerRef,PlayerRef)
+            
+            ;; deepborn 4.0.0: added Nirn Shard as the way of opening skill tree
+            if(FirstTimeMining == true)
+            if(PlayerRef.GetItemCount(_deepborn_NirnShard) == 0)
+                PlayerRef.AddItem(_deepborn_NirnShard, 1, true)
+                Debug.Notification("You have obtained a Nirn Shard! You can use this to unlock the Deepborn Mining skill tree in the Skills menu.")
+                FirstTimeMining = false
+            endif
+        endif
+
 
             ;Evaluate which ore tier is to provide different exp
             if(self.HasKeyword(_deepborn_Tier1Ore))
