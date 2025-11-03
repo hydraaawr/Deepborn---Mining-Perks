@@ -16,10 +16,21 @@ Keyword Property _deepborn_Tier6Ore auto
 Weapon Property DLC2AncientNordPickaxe auto
 Weapon Property DLC2RR03NordPickaxe auto
 Weapon Property DLC2dunKolbjornRalisPickaxe auto
-;; deepborn 4.0.0: added Nirn Shard as the way of opening skill tree
+;; deepborn 4.0.0: added Nirn Shard as a way of opening skill tree
 MiscObject Property _deepborn_NirnShard auto
 Bool property FirstTimeMining = true auto
 
+
+Function AddNirnShardToPlayer()
+    if(PlayerRef.GetItemCount(_deepborn_NirnShard) == 0) ;; only if player doesn't already have one
+        PlayerRef.AddItem(_deepborn_NirnShard, 1, true)
+        if FirstTimeMining
+            FirstTimeMining = false
+            Debug.Notification("You have obtained a Nirn Shard! You can use this to unlock the Deepborn Mining skill tree in the Skills menu. (This message will only appear once)")
+        endif
+    endif
+EndFunction
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 Event OnActivate(ObjectReference akActionRef)
     if(akActionRef ==  PlayerRef)
@@ -28,14 +39,14 @@ Event OnActivate(ObjectReference akActionRef)
             ;; init cd
             _deepborn_SkillUpCDSpell.Cast(PlayerRef,PlayerRef)
             
-            ;; deepborn 4.0.0: added Nirn Shard as the way of opening skill tree
-            if(FirstTimeMining == true)
-            if(PlayerRef.GetItemCount(_deepborn_NirnShard) == 0)
+            AddNirnShardToPlayer()
+
+            if(PlayerRef.GetItemCount(_deepborn_NirnShard) == 0) ;; only if player doesn't already have one
                 PlayerRef.AddItem(_deepborn_NirnShard, 1, true)
                 Debug.Notification("You have obtained a Nirn Shard! You can use this to unlock the Deepborn Mining skill tree in the Skills menu.")
-                FirstTimeMining = false
+                
             endif
-        endif
+        
 
 
             ;Evaluate which ore tier is to provide different exp
@@ -84,6 +95,9 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 	if akAggressor == PlayerRef	
         ;Debug.Notification("Damagestage: " + self.GetCurrentDestructionStage())
 		if mineOreToolsList.hasForm(akSource) && self.GetCurrentDestructionStage() != 1  ;if has tools and no depleted ore
+            
+            AddNirnShardToPlayer()
+            
             ;Evaluate which ore tier is to provide different exp
             if(self.HasKeyword(_deepborn_Tier1Ore))
 
