@@ -38,7 +38,8 @@ Actor Property PlayerRef Auto
 Perk Property _deepborn_OpenTree_Perk01 Auto
 
 ;; Updating system var
-float Property _deepborn_Version Auto
+float Property _deepborn_CurrVersion Auto
+float Property _deepborn_NewVersion = 4.00 auto ;; CHANGE THIS WHEN UPDATING THE MOD
 Spell Property _deepborn_IncreaseGemsChanceAb01 Auto
 Spell Property _deepborn_IncreaseGemsChanceAb02 Auto
 Spell Property _deepborn_IncreaseGemsChanceAb03 Auto
@@ -65,8 +66,8 @@ EndFunction
 
 ;; 3.2.0 - Reapply increasegemchance changes when updating mod
 Function UpdateManager()
-    ;Debug.Notification("Deepborn Version: " + _deepborn_Version) ;DEBUG
-    If (_deepborn_Version < 3.20)
+    ;Debug.Notification("Deepborn Version: " + _deepborn_CurrVersion) ;DEBUG
+    If (_deepborn_CurrVersion < _deepborn_NewVersion)
         ;Debug.Notification("Deepborn Update: Reapplying Increase Gems MGEFs") ;DEBUG
 
         _deepborn_LItemGems10ChanceNone.SetValue(BaseLItemGems10ChanceNone) ; take the previous version base value
@@ -82,7 +83,7 @@ Function UpdateManager()
             PlayerRef.DispelSpell(_deepborn_IncreaseGemsChanceAb01)
             PlayerRef.AddSpell(_deepborn_IncreaseGemsChanceAb01, false)
         endif
-        _deepborn_Version = 3.20
+        _deepborn_CurrVersion = _deepborn_NewVersion
     endif
 
 
