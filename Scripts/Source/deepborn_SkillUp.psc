@@ -13,9 +13,7 @@ Keyword Property _deepborn_Tier3Ore auto
 Keyword Property _deepborn_Tier4Ore auto
 Keyword Property _deepborn_Tier5Ore auto
 Keyword Property _deepborn_Tier6Ore auto
-Weapon Property DLC2AncientNordPickaxe auto
-Weapon Property DLC2RR03NordPickaxe auto
-Weapon Property DLC2dunKolbjornRalisPickaxe auto
+formlist Property DLC2StalhrimMineOreToolsList auto
 ;; deepborn 4.0.0: added Nirn Shard as a way of opening skill tree
 MiscObject Property _deepborn_NirnShard auto
 Bool property FirstTimeMining = true auto
@@ -71,7 +69,7 @@ Event OnActivate(ObjectReference akActionRef)
                 ;Debug.Notification("Tier 5 Ore")
                 SkillAdvanceMagnitude = ((50+(14 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
-            elseif(self.HasKeyword(_deepborn_Tier6Ore) && ((PlayerRef.GetItemCount(DLC2AncientNordPickaxe) > 0) ||  PlayerRef.GetItemCount(DLC2RR03NordPickaxe) > 0 ||  PlayerRef.GetItemCount(DLC2dunKolbjornRalisPickaxe) > 0)) ; special condition for stalhrim. In future updates, maybe replace by DLC2StalhrimMineOreToolsList
+            elseif(self.HasKeyword(_deepborn_Tier6Ore) && PlayerRef.GetItemCount(DLC2StalhrimMineOreToolsList) > 0) ; special condition for stalhrim
                 ;Debug.Notification("Tier 6 Ore")
                 SkillAdvanceMagnitude = ((60+(15 * CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
 
@@ -120,7 +118,7 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 
                 SkillAdvanceMagnitude = ((50+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
             
-            elseif(self.HasKeyword(_deepborn_Tier6Ore) && ((PlayerRef.IsEquipped(DLC2AncientNordPickaxe)) ||  (PlayerRef.IsEquipped(DLC2RR03NordPickaxe)) || (PlayerRef.IsEquipped(DLC2dunKolbjornRalisPickaxe)))) ; special condition for stalhrim
+            elseif(self.HasKeyword(_deepborn_Tier6Ore) && PlayerRef.GetItemCount(DLC2StalhrimMineOreToolsList) > 0) ; special condition for stalhrim
 
                 SkillAdvanceMagnitude = ((60+(CustomSkills.GetSkillLevel("mining")))/2) * _deepborn_SkillAdvanceMult.GetValue()
             endif
