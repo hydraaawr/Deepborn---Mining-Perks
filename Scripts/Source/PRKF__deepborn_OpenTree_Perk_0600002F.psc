@@ -12,7 +12,7 @@ Function Fragment_1(ObjectReference akTargetRef, Actor akActor)
 if(PlayerRef.GetItemCount(_deepborn_NirnShard) > 0)
     CustomSkills.OpenCustomSkillMenu("mining")
 else
-    Debug.Notification("You need a Nirn Shard in order to resonate with the vein.")
+    Debug.Notification("You need a Nirn Shard to resonate with the vein.")
 endif
 ;END CODE
 EndFunction
