@@ -19,6 +19,7 @@ Weapon Property DLC2dunKolbjornRalisPickaxe auto
 ;; deepborn 4.0.0: added Nirn Shard as a way of opening skill tree
 MiscObject Property _deepborn_NirnShard auto
 Bool property FirstTimeMining = true auto
+Message Property _deepborn_NirnShardMessage auto
 
 
 Function AddNirnShardToPlayer()
@@ -26,7 +27,7 @@ Function AddNirnShardToPlayer()
         PlayerRef.AddItem(_deepborn_NirnShard, 1, true)
         if FirstTimeMining
             FirstTimeMining = false
-            Debug.Notification("You have obtained a Nirn Shard! You can use this to unlock the Deepborn Mining skill tree in the Skills menu. (This message will only appear once)")
+            _deepborn_NirnShardMessage.Show()
         endif
     endif
 EndFunction
